@@ -16,6 +16,8 @@ gem "jsbundling-rails", ">= 0.1.0"
 gem "jbuilder", "~> 2.7"
 gem "image_processing", "~> 1.2"
 gem "redis", "~> 4.0"
+gem "devise", github: 'heartcombo/devise'
+gem "simple_form"
 
 gem "tzinfo-data", platforms: %i[ mingw mswin x64_mingw jruby ]
 
@@ -26,6 +28,7 @@ end
 group :development do
   gem "web-console", ">= 4.1.0"
   gem "rack-mini-profiler", ">= 2.3.3"
+  gem 'annotate'
 end
 
 group :test do

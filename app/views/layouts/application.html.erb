@@ -14,6 +14,15 @@
   <body>
     <%= render partial: 'components/header' %>
     <main class="my-4">
+      <div class="container">
+        <% if notice.present? %>
+          <div class="alert alert-primary"><%= notice %></div>
+        <% end %>
+        <% if alert.present? %>
+          <div class="alert alert-danger"><%= alert %></div>
+        <% end %>
+      </div>
+
       <%= yield %>
     </main>
     <%= render partial: 'components/footer' %>
