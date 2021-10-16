@@ -10,11 +10,8 @@
 #  current_sign_in_ip     :string
 #  email                  :string           default(""), not null
 #  encrypted_password     :string           default(""), not null
-#  facebook_uid           :string
 #  failed_attempts        :integer          default(0), not null
 #  first_name             :string
-#  github_uid             :string
-#  google_oauth2_uid      :string
 #  last_name              :string
 #  last_sign_in_at        :datetime
 #  last_sign_in_ip        :string
@@ -23,7 +20,6 @@
 #  reset_password_sent_at :datetime
 #  reset_password_token   :string
 #  sign_in_count          :integer          default(0), not null
-#  twitter_uid            :string
 #  unconfirmed_email      :string
 #  unlock_token           :string
 #  created_at             :datetime         not null
@@ -39,16 +35,22 @@
 class User < ApplicationRecord
   devise  :database_authenticatable, :registerable, :recoverable,
           :rememberable, :validatable, :confirmable, :lockable, :timeoutable,
-          :trackable, :omniauthable, omniauth_providers: %i[facebook github google_oauth2 twitter]
+          :trackable, :omniauthable, omniauth_providers: Rails.application.config.devise.omniauth_providers
 
-  def self.from_omniauth(auth)
-    provider = auth.provider
-    u = where(email: auth.info.email).first_or_create do
+  has_many :identities, class_name: 'User::Identity', dependent: :destroy
+
+  def self.from_omniauth(auth, signed_id_user = nil)
+    identity = User::Identity.from_omniauth(auth)
+    user = signed_id_user
+    user ||= identity.user
+    user ||= where(email: auth.info.email).first_or_create do
       user.password = Devise.friendly_token[0, 20]
       user.skip_confirmation!
     end
-    u.update("#{provider}_uid" => auth.uid)
-    u
+
+    identity.user = user
+    identity.save
+    user
   end
 
   def to_s
