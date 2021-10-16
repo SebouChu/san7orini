@@ -21,6 +21,7 @@
 #  reset_password_sent_at :datetime
 #  reset_password_token   :string
 #  sign_in_count          :integer          default(0), not null
+#  twitter_uid            :string
 #  unconfirmed_email      :string
 #  unlock_token           :string
 #  created_at             :datetime         not null
@@ -36,7 +37,7 @@
 class User < ApplicationRecord
   devise  :database_authenticatable, :registerable, :recoverable,
           :rememberable, :validatable, :confirmable, :lockable, :timeoutable,
-          :trackable, :omniauthable, omniauth_providers: %i[facebook]
+          :trackable, :omniauthable, omniauth_providers: %i[facebook twitter]
 
   def self.from_omniauth(auth)
     provider = auth.provider
@@ -44,7 +45,7 @@ class User < ApplicationRecord
       user.password = Devise.friendly_token[0, 20]
       user.skip_confirmation!
     end
-    u.update(facebook_uid: auth.uid)
+    u.update("#{provider}_uid" => auth.uid)
     u
   end
 

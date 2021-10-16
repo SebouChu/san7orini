@@ -290,6 +290,9 @@ Devise.setup do |config|
   config.omniauth :facebook,
                   Rails.application.credentials.dig(:facebook, :app_id),
                   Rails.application.credentials.dig(:facebook, :app_secret)
+  config.omniauth :twitter,
+                  Rails.application.credentials.dig(:twitter, :api_key),
+                  Rails.application.credentials.dig(:twitter, :api_secret)
 
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or
