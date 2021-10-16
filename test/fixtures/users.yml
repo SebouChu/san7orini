@@ -14,6 +14,7 @@
 #  failed_attempts        :integer          default(0), not null
 #  first_name             :string
 #  github_uid             :string
+#  google_oauth2_uid      :string
 #  last_name              :string
 #  last_sign_in_at        :datetime
 #  last_sign_in_ip        :string
