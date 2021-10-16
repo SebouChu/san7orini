@@ -4,6 +4,15 @@ A Ruby on Rails application to develop different features. It might get ugly but
 
 ## Dev
 
+### Environment
+
+- Ruby 3.0.2
+- Rails 7.0.0
+- Yarn
+- [puma-dev](https://github.com/puma/puma-dev)
+  **Why?** With OmniAuth, for security purposes, Facebook needs a HTTPs request from the application.
+  With this, I can work with the host `https://san7orini.test`.
+
 ### Setup
 
 - Clone this repo
