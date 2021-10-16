@@ -18,6 +18,8 @@ gem "image_processing", "~> 1.2"
 gem "redis", "~> 4.0"
 gem "devise", github: 'heartcombo/devise'
 gem "simple_form"
+gem "omniauth-facebook"
+gem "omniauth-rails_csrf_protection"
 
 gem "tzinfo-data", platforms: %i[ mingw mswin x64_mingw jruby ]
 

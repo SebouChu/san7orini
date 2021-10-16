@@ -10,6 +10,7 @@
 #  current_sign_in_ip     :string
 #  email                  :string           default(""), not null
 #  encrypted_password     :string           default(""), not null
+#  facebook_uid           :string
 #  failed_attempts        :integer          default(0), not null
 #  first_name             :string
 #  last_name              :string

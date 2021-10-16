@@ -10,6 +10,7 @@
 #  current_sign_in_ip     :string
 #  email                  :string           default(""), not null
 #  encrypted_password     :string           default(""), not null
+#  facebook_uid           :string
 #  failed_attempts        :integer          default(0), not null
 #  first_name             :string
 #  last_name              :string
@@ -33,11 +34,19 @@
 #  index_users_on_unlock_token          (unlock_token) UNIQUE
 #
 class User < ApplicationRecord
-  # Include default devise modules. Others available are:
-  # and :omniauthable
   devise  :database_authenticatable, :registerable, :recoverable,
           :rememberable, :validatable, :confirmable, :lockable, :timeoutable,
-          :trackable
+          :trackable, :omniauthable, omniauth_providers: %i[facebook]
+
+  def self.from_omniauth(auth)
+    provider = auth.provider
+    u = where(email: auth.info.email).first_or_create do
+      user.password = Devise.friendly_token[0, 20]
+      user.skip_confirmation!
+    end
+    u.update(facebook_uid: auth.uid)
+    u
+  end
 
   def to_s
     full_name.present? ? full_name : email
