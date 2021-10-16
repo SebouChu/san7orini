@@ -60,4 +60,8 @@ class User < ApplicationRecord
   def full_name
     @full_name ||= "#{first_name} #{last_name}".strip
   end
+
+  def has_identity?(provider)
+    identities.find_by(provider: provider).present?
+  end
 end
