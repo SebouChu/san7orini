@@ -1,24 +1,20 @@
-# README
+# San7orini
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+A Ruby on Rails application to develop different features. It might get ugly but you know, *Rome was not built in a day*.
 
-Things you may want to cover:
+## Dev
 
-* Ruby version
+### Setup
 
-* System dependencies
+- Clone this repo
+- Run `bin/setup`
+- Run `yarn`
+- Set up credentials based on `config/credentials-example.yml`
 
-* Configuration
+### Run
 
-* Database creation
+Magic happens by running `bin/dev`.
 
-* Database initialization
+## Starring
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+TODO: A beautiful list of features
