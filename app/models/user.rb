@@ -13,6 +13,7 @@
 #  facebook_uid           :string
 #  failed_attempts        :integer          default(0), not null
 #  first_name             :string
+#  github_uid             :string
 #  last_name              :string
 #  last_sign_in_at        :datetime
 #  last_sign_in_ip        :string
@@ -37,7 +38,7 @@
 class User < ApplicationRecord
   devise  :database_authenticatable, :registerable, :recoverable,
           :rememberable, :validatable, :confirmable, :lockable, :timeoutable,
-          :trackable, :omniauthable, omniauth_providers: %i[facebook twitter]
+          :trackable, :omniauthable, omniauth_providers: %i[facebook github twitter]
 
   def self.from_omniauth(auth)
     provider = auth.provider
