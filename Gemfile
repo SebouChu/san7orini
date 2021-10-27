@@ -23,6 +23,7 @@ gem "omniauth-rails_csrf_protection"
 gem "omniauth-twitter"
 gem "omniauth-github"
 gem "omniauth-google-oauth2"
+gem "two_factor_authentication", github: 'noesya/two_factor_authentication'
 
 gem "tzinfo-data", platforms: %i[ mingw mswin x64_mingw jruby ]
 
